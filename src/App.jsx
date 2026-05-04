@@ -12,6 +12,7 @@ import Scanner from "./pages/Scanner";
 import Diary from "./pages/Diary";
 import Analytics from "./pages/admin/Analytics";
 import FoodScans from "./pages/FoodScans";
+import FamilyRelationshipManager from "./pages/admin/FamilyRelationship";
 import UserManagement from "./pages/admin/UserManagement";
 import Calendar from "./pages/Calendar";
 import Settings from "./pages/Settings";
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<UserManagement />} />
+          <Route path="family" element={<FamilyRelationshipManager />} />
           <Route path="analytics" element={<Analytics />} />
 
           <Route path="settings" element={<Settings />} />

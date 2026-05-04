@@ -27,6 +27,7 @@ const NAVY = "#0a2366";
 const NAV_ITEMS = [
   { icon: Activity, label: "Dashboard", href: "/admin/" },
   { icon: Users, label: "User Management", href: "/admin/users" },
+  { icon: Users, label: "Relationships", href: "/admin/family" },
   { icon: FileText, label: "Analytics", href: "/admin/analytics" },
 ];
 
