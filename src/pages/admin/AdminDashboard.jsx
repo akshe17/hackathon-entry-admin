@@ -481,40 +481,6 @@ export default function AdminDashboard() {
             >
               System Overview
             </Title>
-            <Group gap="sm" mt={4}>
-              <Box
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  backgroundColor: "#eff4ff",
-                  border: "1px solid #dbeafe",
-                  borderRadius: 20,
-                  padding: "4px 12px",
-                }}
-              >
-                <Server size={12} color={BLUE} />
-                <Text size="xs" style={{ color: BLUE, fontWeight: 600 }}>
-                  All Systems Operational
-                </Text>
-              </Box>
-              <Box
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  backgroundColor: "#f8faff",
-                  border: "1px solid #e8ecf5",
-                  borderRadius: 20,
-                  padding: "4px 12px",
-                }}
-              >
-                <ShieldCheck size={12} color="#16a34a" />
-                <Text size="xs" c="dimmed" fw={500}>
-                  Admin Access: Full
-                </Text>
-              </Box>
-            </Group>
           </Stack>
 
           {/* Quick actions */}
@@ -543,52 +509,6 @@ export default function AdminDashboard() {
             </Button>
           </Group>
         </Group>
-
-        {/* Tab strip */}
-        <Box
-          style={{
-            marginLeft: -32,
-            marginRight: -32,
-            borderTop: "1px solid #f0f3fa",
-          }}
-        >
-          <Group gap={0} style={{ overflowX: "auto" }}>
-            {[
-              { icon: <Activity size={15} />, label: "Overview", active: true },
-              { icon: <Users size={15} />, label: "Users", active: false },
-              {
-                icon: <FileText size={15} />,
-                label: "System Logs",
-                active: false,
-              },
-              { icon: <Server size={15} />, label: "Analytics", active: false },
-            ].map(({ icon, label, active }, i) => (
-              <Box
-                key={label}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "13px 24px",
-                  color: active ? NAVY : "#9ca3af",
-                  fontWeight: active ? 700 : 500,
-                  fontSize: 13,
-                  borderRight: "1px solid #f0f3fa",
-                  borderBottom: active
-                    ? `2px solid ${NAVY}`
-                    : "2px solid transparent",
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                  transition: "color 0.15s",
-                  userSelect: "none",
-                }}
-              >
-                {icon}
-                {label}
-              </Box>
-            ))}
-          </Group>
-        </Box>
       </Box>
 
       <Container size="xl" py="xl" px="lg">
