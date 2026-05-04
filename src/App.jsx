@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLayout from "./layouts/AdminLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
@@ -8,7 +10,10 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Scanner from "./pages/Scanner";
 import Diary from "./pages/Diary";
+import FoodScans from "./pages/FoodScans";
+import UserManagement from "./pages/admin/UserManagement";
 import Calendar from "./pages/Calendar";
+import Settings from "./pages/Settings";
 export default function App() {
   return (
     <BrowserRouter>
@@ -45,9 +50,18 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="scan" element={<Scanner />} />
+          <Route path="food-scans" element={<FoodScans />} />
           <Route path="diary" element={<Diary />} />
           <Route path="calendar" element={<Calendar />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

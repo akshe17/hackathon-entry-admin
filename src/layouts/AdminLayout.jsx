@@ -11,24 +11,22 @@ import {
 } from "@mantine/core";
 import {
   Activity,
-  ScanBarcode,
-  BookOpen,
-  Calendar,
   Settings,
   LogOut,
   Menu,
   X,
+  Shield,
+  TrendingUp,
+  Users,
+  FileText,
 } from "lucide-react";
 import { BrandName } from "../components/BrandName";
 
 const NAVY = "#0a2366";
 
 const NAV_ITEMS = [
-  { icon: Activity, label: "Dashboard", href: "/dashboard" },
-  { icon: ScanBarcode, label: "Scan & Swap", href: "/dashboard/scan" },
-  { icon: ScanBarcode, label: "Food Scanned", href: "/dashboard/food-scans" },
-  { icon: BookOpen, label: "AI Diary", href: "/dashboard/diary" },
-  { icon: Calendar, label: "Health Calendar", href: "/dashboard/calendar" },
+  { icon: Activity, label: "Dashboard", href: "/admin/" },
+  { icon: Users, label: "User Management", href: "/admin/users" },
 ];
 
 function NavItem({ icon: Icon, label, href, active, onClick }) {
@@ -37,6 +35,7 @@ function NavItem({ icon: Icon, label, href, active, onClick }) {
       component={Link}
       to={href}
       onClick={onClick}
+      className="group relative overflow-hidden transition-all duration-200"
       style={{
         display: "flex",
         alignItems: "center",
@@ -63,8 +62,21 @@ function NavItem({ icon: Icon, label, href, active, onClick }) {
         }
       }}
     >
-      <Icon size={16} />
+      {active && (
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-[#0a2366] rounded-r"></div>
+      )}
+      <Icon
+        size={16}
+        className={
+          active
+            ? "text-[#0a2366]"
+            : "group-hover:text-[#0a2366] transition-colors"
+        }
+      />
       {label}
+      {active && (
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[#0a2366] opacity-60"></div>
+      )}
     </UnstyledButton>
   );
 }
@@ -72,6 +84,7 @@ function NavItem({ icon: Icon, label, href, active, onClick }) {
 function Sidebar({ location, onClose }) {
   return (
     <Box
+      className="relative shadow-xl shadow-gray-200/50"
       style={{
         width: 220,
         height: "100%",
@@ -83,6 +96,16 @@ function Sidebar({ location, onClose }) {
         flexShrink: 0,
       }}
     >
+      {/* Admin Badge */}
+      <div className="absolute top-4 right-4">
+        <div className="flex items-center gap-1 px-1.5 py-0.5 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-full border border-indigo-100">
+          <Shield size={10} className="text-indigo-600" />
+          <span className="text-[9px] font-semibold text-indigo-700 tracking-wide">
+            ADMIN
+          </span>
+        </div>
+      </div>
+
       {/* Brand */}
       <Group justify="space-between" align="center" mb={32} px={2}>
         <Text
@@ -90,6 +113,7 @@ function Sidebar({ location, onClose }) {
           to="/"
           fw={600}
           size="md"
+          className="relative group"
           style={{
             color: NAVY,
             textDecoration: "none",
@@ -97,10 +121,12 @@ function Sidebar({ location, onClose }) {
           }}
         >
           <BrandName />
+          <div className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-[#0a2366] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </Text>
         {onClose && (
           <UnstyledButton
             onClick={onClose}
+            className="hover:bg-gray-100 rounded-full p-1 transition-all hover:rotate-90"
             style={{ color: "#9ca3af", lineHeight: 1 }}
           >
             <X size={18} />
@@ -110,6 +136,9 @@ function Sidebar({ location, onClose }) {
 
       {/* Nav */}
       <Stack gap={4} style={{ flex: 1 }}>
+        <div className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">
+          Admin Controls
+        </div>
         {NAV_ITEMS.map((item) => (
           <NavItem
             key={item.href}
@@ -127,11 +156,12 @@ function Sidebar({ location, onClose }) {
         <NavItem
           icon={Settings}
           label="Settings"
-          href="/dashboard/settings"
-          active={location.pathname === "/dashboard/settings"}
+          href="/admin/settings"
+          active={location.pathname === "/admin/settings"}
           onClick={onClose}
         />
         <UnstyledButton
+          className="group transition-all duration-200 hover:bg-red-50"
           style={{
             display: "flex",
             alignItems: "center",
@@ -145,14 +175,18 @@ function Sidebar({ location, onClose }) {
           onMouseEnter={(e) => (e.currentTarget.style.color = "#ef4444")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
         >
-          <LogOut size={16} />
+          <LogOut
+            size={16}
+            className="group-hover:rotate-180 transition-transform duration-300"
+          />
           Log out
         </UnstyledButton>
       </Stack>
 
-      {/* User pill */}
+      {/* User pill with admin indicator */}
       <Box
         mt="md"
+        className="relative group hover:shadow-md transition-all duration-200"
         style={{
           padding: "10px 12px",
           borderRadius: 8,
@@ -160,10 +194,12 @@ function Sidebar({ location, onClose }) {
           border: "1px solid #e8ecf5",
         }}
       >
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full ring-2 ring-white"></div>
         <Group gap="sm">
           <Avatar
             size={32}
             radius="xl"
+            className="ring-2 ring-indigo-200 group-hover:ring-indigo-400 transition-all"
             style={{
               backgroundColor: NAVY,
               color: "#fff",
@@ -171,7 +207,7 @@ function Sidebar({ location, onClose }) {
               fontWeight: 700,
             }}
           >
-            JD
+            AD
           </Avatar>
           <Box style={{ overflow: "hidden" }}>
             <Text
@@ -185,10 +221,10 @@ function Sidebar({ location, onClose }) {
                 textOverflow: "ellipsis",
               }}
             >
-              Juan Dela Cruz
+              Admin User
             </Text>
             <Text size="10px" style={{ color: "#9ca3af" }}>
-              General Wellness
+              System Administrator
             </Text>
           </Box>
         </Group>
@@ -203,6 +239,7 @@ export default function DashboardLayout() {
 
   return (
     <Box
+      className="bg-gradient-to-br from-gray-50 to-gray-100/50"
       style={{
         display: "flex",
         minHeight: "100vh",
@@ -249,7 +286,7 @@ export default function DashboardLayout() {
           overflow: "hidden",
         }}
       >
-        {/* Mobile topbar */}
+        {/* Mobile topbar with admin vibe */}
         <Box
           className="dashboard-topbar"
           style={{
@@ -263,6 +300,7 @@ export default function DashboardLayout() {
         >
           <UnstyledButton
             onClick={() => setMobileOpen(true)}
+            className="hover:bg-gray-100 rounded-lg p-1 transition-all"
             style={{ color: NAVY, lineHeight: 1 }}
           >
             <Menu size={20} />
@@ -274,6 +312,12 @@ export default function DashboardLayout() {
           >
             <BrandName />
           </Text>
+          <div className="ml-auto flex items-center gap-1 px-2 py-1 bg-indigo-50 rounded-full">
+            <Shield size={12} className="text-indigo-600" />
+            <span className="text-[10px] font-semibold text-indigo-700">
+              ADMIN
+            </span>
+          </div>
         </Box>
 
         <Box style={{ flex: 1, overflowY: "auto" }}>
@@ -287,6 +331,26 @@ export default function DashboardLayout() {
         @media (max-width: 768px) {
           .dashboard-sidebar { display: none; }
           .dashboard-topbar  { display: flex !important; }
+        }
+        
+        /* Custom scrollbar for admin feel */
+        ::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
         }
       `}</style>
     </Box>
