@@ -1,4 +1,4 @@
-// LogsPage.jsx - Complete logs page with Tailwind CSS and Lucide React
+// Logs.jsx - Updated with action buttons near search bar
 import React, { useState, useEffect } from "react";
 import {
   FileText,
@@ -541,32 +541,6 @@ export default function Logs() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={handleExport}
-                className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50"
-              >
-                <Download size={14} /> Export
-              </button>
-              {selectedLogs.size > 0 && (
-                <button
-                  onClick={handleBulkDelete}
-                  className="px-3 py-1.5 border border-red-300 text-red-600 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-red-50"
-                >
-                  <Trash2 size={14} /> Delete ({selectedLogs.size})
-                </button>
-              )}
-              <button
-                onClick={fetchLogs}
-                className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50"
-              >
-                <RefreshCw
-                  size={14}
-                  className={loading ? "animate-spin" : ""}
-                />{" "}
-                Refresh
-              </button>
-            </div>
           </div>
 
           {/* Stats Cards */}
@@ -610,7 +584,7 @@ export default function Logs() {
             </div>
           </div>
 
-          {/* Search and Filters */}
+          {/* Search and Actions Bar - Combined */}
           <div className="flex flex-col sm:flex-row gap-3 mt-5">
             <div className="relative flex-1">
               <Search
@@ -625,6 +599,38 @@ export default function Logs() {
                 className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+
+            {/* Action Buttons - Now near search bar */}
+            <div className="flex gap-2">
+              <button
+                onClick={handleExport}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50 transition-colors"
+              >
+                <Download size={14} /> Export
+              </button>
+              {selectedLogs.size > 0 && (
+                <button
+                  onClick={handleBulkDelete}
+                  className="px-3 py-2 border border-red-300 text-red-600 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-red-50 transition-colors"
+                >
+                  <Trash2 size={14} /> Delete ({selectedLogs.size})
+                </button>
+              )}
+              <button
+                onClick={fetchLogs}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50 transition-colors"
+              >
+                <RefreshCw
+                  size={14}
+                  className={loading ? "animate-spin" : ""}
+                />{" "}
+                Refresh
+              </button>
+            </div>
+          </div>
+
+          {/* Sort and Filter Controls */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-3">
             <div className="flex gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
@@ -721,6 +727,24 @@ export default function Logs() {
           </div>
         ) : (
           <>
+            {/* Selected Logs Info Bar */}
+            {selectedLogs.size > 0 && (
+              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-blue-600" />
+                  <span className="text-sm text-blue-700">
+                    {selectedLogs.size} log(s) selected
+                  </span>
+                </div>
+                <button
+                  onClick={() => setSelectedLogs(new Set())}
+                  className="text-xs text-blue-600 hover:text-blue-700"
+                >
+                  Clear selection
+                </button>
+              </div>
+            )}
+
             {/* Logs Table */}
             <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
               <div className="overflow-x-auto">
