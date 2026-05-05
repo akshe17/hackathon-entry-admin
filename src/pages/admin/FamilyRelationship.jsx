@@ -1,4 +1,4 @@
-// FamilyRelationshipManager.jsx
+// FamilyRelationshipManager.jsx - Updated with buttons near search bar
 import React, { useState, useEffect } from "react";
 import {
   Users,
@@ -84,7 +84,7 @@ const ROLE_CONFIG = {
   },
 };
 
-// Mock data with all roles
+// Mock data with all roles (same as before)
 const mockProfiles = [
   // PARENTS
   {
@@ -155,7 +155,6 @@ const mockProfiles = [
       },
     ],
   },
-
   // CHILDREN
   {
     id: "3",
@@ -226,7 +225,6 @@ const mockProfiles = [
       role: "PARENT",
     },
   },
-
   // INDIVIDUALS
   {
     id: "5",
@@ -264,7 +262,6 @@ const mockProfiles = [
     weeklyActivity: 300,
     healthGoal: "Stress Reduction",
   },
-
   // CAREGIVERS
   {
     id: "9",
@@ -450,7 +447,7 @@ const FamilyRelationshipManager = () => {
     }, 500);
   };
 
-  // Family Card Component
+  // Family Card Component (same as before)
   const FamilyCard = ({ family, index }) => {
     const isExpanded = expandedFamilies.has(family.parent.id);
     const roleConfig = ROLE_CONFIG[family.parent.role];
@@ -522,7 +519,6 @@ const FamilyRelationshipManager = () => {
             >
               <div className="p-5">
                 <div className="grid md:grid-cols-2 gap-6">
-                  {/* Parent Details */}
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                       <Shield size={14} className="text-gray-400" />
@@ -562,7 +558,6 @@ const FamilyRelationshipManager = () => {
                     </div>
                   </div>
 
-                  {/* Children Section */}
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                       <Baby size={14} className="text-gray-400" />
@@ -632,7 +627,6 @@ const FamilyRelationshipManager = () => {
                   </div>
                 </div>
 
-                {/* Quick Actions */}
                 <div className="mt-5 pt-4 border-t border-gray-100 flex gap-2">
                   <button
                     onClick={() => {
@@ -657,7 +651,7 @@ const FamilyRelationshipManager = () => {
     );
   };
 
-  // List View Component
+  // List View Component (simplified for brevity - same as before)
   const ListView = () => (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
@@ -805,7 +799,7 @@ const FamilyRelationshipManager = () => {
     </div>
   );
 
-  // Matrix View Component
+  // Matrix View Component (simplified for brevity - same as before)
   const MatrixView = () => {
     const parents = profiles.filter((p) => p.role === "PARENT");
     const children = profiles.filter((p) => p.role === "CHILD");
@@ -937,7 +931,6 @@ const FamilyRelationshipManager = () => {
             <X size={18} />
           </button>
         </div>
-
         <div className="p-5 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -960,7 +953,6 @@ const FamilyRelationshipManager = () => {
                 ))}
             </select>
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Child
@@ -987,7 +979,6 @@ const FamilyRelationshipManager = () => {
                 ))}
             </select>
           </div>
-
           {selectedParent && selectedChild && (
             <div className="bg-blue-50 rounded-lg p-3">
               <p className="text-sm text-gray-700">
@@ -1004,7 +995,6 @@ const FamilyRelationshipManager = () => {
             </div>
           )}
         </div>
-
         <div className="flex gap-2 p-5 border-t border-gray-200 bg-gray-50 rounded-b-xl">
           <button
             onClick={() => setShowLinkModal(false)}
@@ -1024,7 +1014,7 @@ const FamilyRelationshipManager = () => {
     </div>
   );
 
-  // Profile Details Modal
+  // Profile Details Modal (simplified - same as before)
   const ProfileDetailsModal = () => (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -1059,7 +1049,6 @@ const FamilyRelationshipManager = () => {
                 </div>
               </div>
             </div>
-
             <div className="p-5 space-y-4">
               <div className="grid grid-cols-3 gap-2">
                 <div className="bg-gray-50 rounded-lg p-2 text-center">
@@ -1084,7 +1073,6 @@ const FamilyRelationshipManager = () => {
                   </p>
                 </div>
               </div>
-
               <div className="border-t pt-3">
                 <h3 className="font-semibold text-gray-900 text-sm mb-2">
                   Personal Information
@@ -1111,7 +1099,6 @@ const FamilyRelationshipManager = () => {
                   </div>
                 </div>
               </div>
-
               {selectedProfile.role === "CHILD" && (
                 <div className="bg-green-50 rounded-lg p-3">
                   <h3 className="font-semibold text-gray-900 text-sm mb-2">
@@ -1140,7 +1127,6 @@ const FamilyRelationshipManager = () => {
                   )}
                 </div>
               )}
-
               <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="font-semibold text-gray-900 text-sm mb-2">
                   Family Connection
@@ -1163,7 +1149,6 @@ const FamilyRelationshipManager = () => {
                 )}
               </div>
             </div>
-
             <div className="flex gap-2 p-5 border-t border-gray-200 bg-gray-50 rounded-b-xl">
               <button
                 onClick={() => setShowDetailsModal(false)}
@@ -1181,7 +1166,7 @@ const FamilyRelationshipManager = () => {
     </div>
   );
 
-  // Add Unlink Modal
+  // Unlink Modal Component
   const UnlinkModalComponent = () => (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -1310,30 +1295,13 @@ const FamilyRelationshipManager = () => {
               </div>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={exportData}
-                className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50"
-              >
-                <Download size={14} /> Export
-              </button>
-              <button
-                onClick={fetchData}
-                className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50"
-              >
-                <RefreshCw
-                  size={14}
-                  className={loading ? "animate-spin" : ""}
-                />{" "}
-                Refresh
-              </button>
-              <button
-                onClick={() => setShowLinkModal(true)}
-                className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-blue-700"
-              >
-                <UserPlus size={14} /> Link Family
-              </button>
-            </div>
+            {/* Link Family button stays in header */}
+            <button
+              onClick={() => setShowLinkModal(true)}
+              className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-blue-700"
+            >
+              <UserPlus size={14} /> Link Family
+            </button>
           </div>
 
           {/* Stats Cards */}
@@ -1373,7 +1341,7 @@ const FamilyRelationshipManager = () => {
             ))}
           </div>
 
-          {/* Search and Filters */}
+          {/* Search Bar with Export and Refresh buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-5">
             <div className="relative flex-1">
               <Search
@@ -1389,6 +1357,29 @@ const FamilyRelationshipManager = () => {
               />
             </div>
 
+            {/* Action Buttons - Next to search bar */}
+            <div className="flex gap-2">
+              <button
+                onClick={exportData}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50 transition-colors"
+              >
+                <Download size={14} /> Export
+              </button>
+              <button
+                onClick={fetchData}
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-1 hover:bg-gray-50 transition-colors"
+              >
+                <RefreshCw
+                  size={14}
+                  className={loading ? "animate-spin" : ""}
+                />{" "}
+                Refresh
+              </button>
+            </div>
+          </div>
+
+          {/* View Toggle and Zoom Controls */}
+          <div className="flex justify-between items-center mt-3">
             <div className="flex gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
@@ -1417,24 +1408,24 @@ const FamilyRelationshipManager = () => {
                   </button>
                 ))}
               </div>
+            </div>
 
-              <div className="flex items-center gap-0.5 bg-gray-100 rounded-lg p-0.5">
-                <button
-                  onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.1))}
-                  className="p-1.5 rounded hover:bg-white"
-                >
-                  <ZoomOut size={12} />
-                </button>
-                <span className="text-xs w-10 text-center">
-                  {Math.round(zoomLevel * 100)}%
-                </span>
-                <button
-                  onClick={() => setZoomLevel(Math.min(1.5, zoomLevel + 0.1))}
-                  className="p-1.5 rounded hover:bg-white"
-                >
-                  <ZoomIn size={12} />
-                </button>
-              </div>
+            <div className="flex items-center gap-0.5 bg-gray-100 rounded-lg p-0.5">
+              <button
+                onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.1))}
+                className="p-1.5 rounded hover:bg-white"
+              >
+                <ZoomOut size={12} />
+              </button>
+              <span className="text-xs w-10 text-center">
+                {Math.round(zoomLevel * 100)}%
+              </span>
+              <button
+                onClick={() => setZoomLevel(Math.min(1.5, zoomLevel + 0.1))}
+                className="p-1.5 rounded hover:bg-white"
+              >
+                <ZoomIn size={12} />
+              </button>
             </div>
           </div>
 
