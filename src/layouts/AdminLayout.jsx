@@ -18,6 +18,10 @@ import {
   Shield,
   TrendingUp,
   Users,
+  LayoutDashboard,
+  HeartHandshake,
+  AlertTriangle,
+  ScrollText,
   FileText,
 } from "lucide-react";
 import { BrandName } from "../components/BrandName";
@@ -25,10 +29,49 @@ import { BrandName } from "../components/BrandName";
 const NAVY = "#0a2366";
 
 const NAV_ITEMS = [
-  { icon: Activity, label: "Dashboard", href: "/admin/" },
-  { icon: Users, label: "User Management", href: "/admin/users" },
-  { icon: Users, label: "Relationships", href: "/admin/family" },
-  { icon: FileText, label: "Analytics", href: "/admin/analytics" },
+  {
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    href: "/admin/",
+    iconColor: "text-blue-600",
+    tooltip: "View platform overview",
+  },
+  {
+    icon: Users,
+    label: "User Management",
+    href: "/admin/users",
+    iconColor: "text-green-600",
+    tooltip: "Manage users, roles, and permissions",
+  },
+  {
+    icon: HeartHandshake,
+    label: "Family Relationships",
+    href: "/admin/family",
+    iconColor: "text-purple-600",
+    tooltip: "Manage family connections and caregivers",
+  },
+  {
+    icon: AlertTriangle,
+    label: "Struggling Areas",
+    href: "/admin/struggling-areas",
+    iconColor: "text-red-600",
+    tooltip: "Users needing intervention",
+    badge: 3,
+  },
+  {
+    icon: TrendingUp,
+    label: "Analytics",
+    href: "/admin/analytics",
+    iconColor: "text-indigo-600",
+    tooltip: "Platform analytics and insights",
+  },
+  {
+    icon: ScrollText,
+    label: "System Logs",
+    href: "/admin/logs",
+    iconColor: "text-gray-600",
+    tooltip: "System activity and audit logs",
+  },
 ];
 
 function NavItem({ icon: Icon, label, href, active, onClick }) {

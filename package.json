@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@mantine/core": "^9.1.1",
+    "@mantine/dates": "^9.1.1",
     "@mantine/form": "^9.1.1",
     "@mantine/hooks": "^9.1.1",
+    "@mantine/notifications": "^9.1.1",
     "@tailwindcss/vite": "^4.2.4",
     "apexcharts": "^5.10.6",
+    "dayjs": "^1.11.20",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
     "react": "^19.2.5",

@@ -11,7 +11,9 @@ import NotFound from "./pages/NotFound";
 import Scanner from "./pages/Scanner";
 import Diary from "./pages/Diary";
 import Analytics from "./pages/admin/Analytics";
+import Logs from "./pages/admin/Logs";
 import FoodScans from "./pages/FoodScans";
+import StrugglingAreas from "./pages/admin/StrugglingAreas";
 import FamilyRelationshipManager from "./pages/admin/FamilyRelationship";
 import UserManagement from "./pages/admin/UserManagement";
 import Calendar from "./pages/Calendar";
@@ -62,7 +64,9 @@ export default function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<UserManagement />} />
           <Route path="family" element={<FamilyRelationshipManager />} />
+          <Route path="struggling-areas" element={<StrugglingAreas />} />
           <Route path="analytics" element={<Analytics />} />
+          <Route path="logs" element={<Logs />} />
 
           <Route path="settings" element={<Settings />} />
         </Route>
